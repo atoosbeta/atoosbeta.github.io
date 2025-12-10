@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tho Le | PhD Researcher</title>
+
+  <!--
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
+
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    .project-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .project-showcase .project-item {
+      display:flex;
+      gap:20px;
+      padding:20px;
+    }
+
+    .project-img-box {
+      flex: 0 0 200px;
+      height: 150px;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .project-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .project-content {
+      flex: 1;
+    }
+
+    .project-link {
+      display: inline-block;
+      margin-top: 15px;
+      color: var(--orange-yellow-crayola);
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .project-link:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .project-item {
+        flex-direction: column;
+      }
+      
+      .project-img-box {
+        flex: 0 0 auto;
+        width: 100%;
+      }
+    }
+
+    /* Research section styles */
+    .research-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    
+    .research-link:hover .project-title {
+      color: var(--orange-yellow-crayola);
+    }
+    
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+    
+    .project-list .project-item {
+      margin: 0;
+      padding: 0;
+    }
+    
+    .project-list .project-item .content-card {
+      width: 100%;
+      margin: 0;
+    }
+    
+    .project-list .project-img-box {
+      position: relative;
+    }
+    
+    .project-list .project-item-icon-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--orange-yellow-crayola);
+      color: var(--white);
+      font-size: 20px;
+      padding: 18px;
+      border-radius: 12px;
+      opacity: 0;
+      transition: 0.25s ease;
+      z-index: 1;
+    }
+    
+    .project-list .project-item:hover .project-item-icon-box {
+      opacity: 1;
+    }
+    
+    .project-list .project-text {
+      color: var(--light-gray);
+      margin-bottom: 5px;
+    }
+    
+    /* Fix for research cards */
+    .research-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 20px;
+    }
+    
+    .research-card .project-img-box {
+      flex: 0 0 200px;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+    
+    .research-card .project-content {
+      flex: 1;
+    }
+    
+    @media (max-width: 768px) {
+      .research-card {
+        flex-direction: column;
+      }
+      
+      .research-card .project-img-box {
+        flex: 0 0 auto;
+        width: 100%;
+      }
+    }
+
+    /* Custom compact skills styling */
+    .skills-list { 
+      padding: 15px !important; 
+    }
+
+    .skills-item:not(:last-child) { 
+      margin-bottom: 10px !important; 
+    }
+
+    .skill .title-wrapper {
+      margin-bottom: 5px !important;
+    }
+
+    .skill-progress-bg {
+      height: 6px !important;
+    }
+
+    .skills-title { 
+      margin-bottom: 15px !important; 
+    }
+
+    /* Reduce spacing in skills section */
+    .skill {
+      margin-bottom: 25px !important;
+    }
+
+    /* Styling for Technical Experience section */
+    .tech-category {
+      margin-bottom: 20px;
+    }
+
+    .tech-category:last-child {
+      margin-bottom: 0;
+    }
+
+    .category-title {
+      color: var(--white-2);
+      margin-bottom: 10px;
+      font-size: var(--fs-5);
+      font-weight: var(--fw-500);
+    }
+
+    .tech-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .tech-item {
+      color: var(--light-gray);
+      font-size: var(--fs-6);
+      font-weight: var(--fw-300);
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    .tech-item strong {
+      color: var(--white-2);
+      font-weight: var(--fw-500);
+    }
+
+    /* Loading screen styles */
+    .media-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--jet);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      transition: opacity 0.3s ease;
+    }
+
+    .loading-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--white-2);
+      border-top: 3px solid var(--orange-yellow-crayola);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .loading-text {
+      margin-top: 10px;
+      color: var(--white-2);
+      font-size: var(--fs-6);
+      text-align: center;
+    }
+
+    /* Ensure media elements are initially hidden until loaded */
+    .media-container video,
+    .media-container img {
+      transition: opacity 0.3s ease;
+    }
+
+    .media-container video.loading,
+    .media-container img.loading {
+      opacity: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!--
+    - #MAIN
+  -->
+
+  <main>
+
+    <!--
+      - #SIDEBAR
+    -->
+
+    <aside class="sidebar" data-sidebar>
+
+      <div class="sidebar-info">
+
+        <figure class="avatar-box">
+          <img src="./assets/images/my-avatar.png" alt="Tho Le" width="80" style="border-radius: 25%;">
+        </figure>
+
+        <div class="info-content">
+          <h1 class="name" title="Tho Le">Tho Le</h1>
+
+          <p class="title">Ph.D. Researcher</p>
+          <p class="title">Computer Vision & Robotics</p>
+          <p class="title">Monash University, Australia</p>
+        </div>
+
+        <button class="info_more-btn" data-sidebar-btn>
+          <span>Show Contacts</span>
+
+          <ion-icon name="chevron-down"></ion-icon>
+        </button>
+
+      </div>
+
+      <div class="sidebar-info_more">
+
+        <div class="separator"></div>
+
+        <ul class="contacts-list">
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="mail-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Email</p>
+
+              <a href="mailto:duy.tho.le@monash.edu" class="contact-link">ldtho.97@gmail.com</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="phone-portrait-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Phone</p>
+
+              <a href="tel:+61412345678" class="contact-link">+61 423169701</a>
+            </div>
+
+          </li>
+
+          <!-- <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="calendar-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Birthday</p>
+
+              <time datetime="1994-06-15">October 1997</time>
+            </div>
+
+          </li> -->
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="location-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Location</p>
+
+              <address>Melbourne, Australia</address>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="flag-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Citizenship</p>
+
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 25px;">🇦🇺</span>
+                <span style="font-size: 25px;">🇻🇳</span>
+              </div>
+            </div>
+
+          </li>
+
+        </ul>
+
+        <div class="separator"></div>
+
+        <ul class="social-list">
+
+          <li class="social-item">
+            <a href="https://scholar.google.com/citations?user=ufvAmAIAAAAJ" class="social-link" target="_blank">
+              <img src="./assets/images/icons8-google-scholar.svg" alt="Google Scholar" width="18" height="18">
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="https://www.linkedin.com/in/tho-le-7745bb106/" class="social-link" target="_blank">
+              <img src="./assets/images/icons8-linkedin.svg" alt="LinkedIn" width="18" height="18">
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="https://github.com/ldtho" class="social-link" target="_blank">
+              <img src="./assets/images/icons8-github.svg" alt="GitHub" width="18" height="18">
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </aside>
+
+
+
+
+
+    <!--
+      - #main-content
+    -->
+
+    <div class="main-content">
+
+      <!--
+        - #NAVBAR
+      -->
+
+      <nav class="navbar">
+
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <button class="navbar-link  active" data-nav-link>About</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Resume</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Researches</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Projects</button>
+          </li>
+
+        </ul>
+
+      </nav>
+
+
+
+
+
+      <!--
+        - #ABOUT
+      -->
+
+      <article class="about  active" data-page="about">
+
+        <header>
+          <h2 class="h2 article-title">About me</h2>
+        </header>
+
+        <section class="about-text">
+          <p>
+            I am a Ph.D. researcher in Computer Vision and Robotics at Monash University, Australia, working under the supervision of Associate Professor Hamid Rezatofighi and Professor Jianfei Cai. My research focuses on the intersection of computer vision, deep learning, and robotics, with particular expertise in multi-modal low-level perception tasks including object detection, tracking, and trajectory prediction for autonomous systems.
+          </p>
+
+          <p>
+            With a publication record at top-tier venues such as CVPR, ECCV, AAAI, and RA-L, I am passionate about developing cutting-edge algorithms that bridge the gap between theoretical research and real-world applications. My work spans from designing novel deep learning architectures using Transformers and Diffusion models, to creating large-scale in-the-wild datasets that advance the field of robotic perception in complex, crowded environments.
+          </p>
+
+          <p>
+            Beyond research, I actively contribute to the academic community as a reviewer for premier computer vision conferences and journals (CVPR, ECCV, AAAI, ICCV, ICRA, TPAMI), while also applying my expertise in industry through AI engineering roles. I believe in open science and reproducible research, consistently releasing code and datasets to benefit the broader research community.
+          </p>
+        </section>
+
+
+        <!--
+          - service
+        -->
+
+        <section class="service">
+
+          <h3 class="h3 service-title">What I'm working on</h3>
+
+          <ul class="service-list">
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-dev.svg" alt="research icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Advanced Perception Research</h4>
+
+                <p class="service-item-text">
+                  Developing state-of-the-art deep learning algorithms using Transformers, Diffusion models, and novel geometric approaches for multi-modal perception tasks including 3D object detection, tracking, and trajectory prediction in autonomous robotic systems.
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-design.svg" alt="academic icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Publishing & Reviewing</h4>
+
+                <p class="service-item-text">
+                  Publishing first-author papers at premier venues (CVPR, ECCV, RA-L), creating open-source datasets and benchmarks, mentoring students, and serving as a reviewer for top-tier computer vision conferences and journals while fostering collaborative research initiatives.
+                </p>
+              </div>
+
+            </li>
+
+          </ul>
+
+        </section>
+
+      </article>
+
+
+
+
+
+      <!--
+        - #RESUME
+      -->
+
+      <article class="resume" data-page="resume">
+
+        <header>
+          <h2 class="h2 article-title">Resume</h2>
+        </header>
+
+        <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="book-outline"></ion-icon>
+            </div>
+
+            <h3 class="h3">Education</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Ph.D. in Computer Vision & Robotics, Monash University</h4>
+
+              <span>2022 — Present (Expected 12/2025)</span>
+
+              <p class="timeline-text">
+                Researching Multi-modal Low-level Perception Tasks (Detection, Tracking, Trajectory Prediction) for Autonomous Robots under Assoc. Prof. Hamid Rezatofighi and Prof. Jianfei Cai.
+                Full scholarship from Monash University.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Master of Data Science, Monash University</h4>
+
+              <span>2020 — 2022</span>
+
+              <p class="timeline-text">
+                Graduated with High Distinction; WAM 82/100.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Bachelor of Business Administration, International University - VNU</h4>
+
+              <span>2016 — 2020</span>
+
+              <p class="timeline-text">
+                Graduated with High Distinction; 
+              </p>
+
+            </li>
+
+          </ol>
+
+        </section>
+
+        <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="book-outline"></ion-icon>
+            </div>
+
+            <h3 class="h3">Experience</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">AI Research Expert — VinMotion</h4>
+
+              <span>09/2025 — Now</span>
+
+              <p class="timeline-text">
+                Working on training and scaling multimodal-multitask VLA models for humanoid robot.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">AI Engineer — Neuweb Technology</h4>
+
+              <span>2023 — Now</span>
+
+              <p class="timeline-text">
+                Develop End-to-End AI-based solutions for Traffic Management, Parking Management, Threat Detection & Analysis, etc.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Research Assistant — Monash Medical Centre, Monash University</h4>
+
+              <span>2021 — Now</span>
+
+              <p class="timeline-text">
+                Researching on attention mechanisms (multi-head attention, coordinate attention, etc.) and their application in X-ray images disease classification task. Developing a new attention-guided neural network <a href="https://www.sciencedirect.com/science/article/pii/S8756328224002047" style="display: inline;">AFFNet</a> used in detecting atypical femur fractures from X-ray images.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Data Engineer — Datamart</h4>
+
+              <span>2018</span>
+
+              <p class="timeline-text">
+                Participate in data ETL (extract-transform-load) processes.
+                Develop and maintain crawlers, parsers system which crawls data from e-commerce websites (Lazada.vn, Tiki.vn, Shopee.vn,…).
+                Research and implement data collection/management tools from various sources
+              </p>
+
+            </li>
+
+          </ol>
+
+        </section>
+
+        <section class="skill">
+
+          <h3 class="h3 skills-title">Technical Experience</h3>
+
+          <div class="skills-list content-card">
+
+            <div class="tech-category">
+              <h4 class="h4 category-title">Languages and Technologies:</h4>
+              <ul class="tech-list">
+                <li class="tech-item">
+                  <strong>Knowledgeable in:</strong> Vision-Language-Action (VLA) Models,Computer Vision, Generative Model, Deep learning, 2D/3D object detection and tracking, Pytorch (proficient), Tensorflow (intermediate), Kafka, PostgreSQL, Docker, TensorRT, MySQL, Machine learning algorithms, Numpy, Pandas, PySpark.
+                </li>
+              </ul>
+            </div>
+
+            <div class="tech-category">
+              <h4 class="h4 category-title">Programming Languages:</h4>
+              <ul class="tech-list">
+                <li class="tech-item">
+                  <strong>Python</strong> (proficient) • <strong>SQL</strong> (basic) • <strong>R</strong> (intermediate) 
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+        </section>
+
+      </article>
+
+
+
+
+
+      <!--
+        - #PORTFOLIO
+      -->
+
+      <article class="portfolio" data-page="researches">
+
+        <header>
+          <h2 class="h2 article-title">
+            Researches
+            <a href="https://scholar.google.com/citations?user=ufvAmAIAAAAJ&hl=en" target="_blank" class="scholar-btn" title="View Google Scholar Profile">
+              <ion-icon name="school-outline"></ion-icon>
+            </a>
+          </h2>
+        </header>
+
+        <section class="projects">
+
+          <ul class="filter-list">
+
+            <li class="filter-item">
+              <button class="active" data-filter-btn data-filter-value="all">All</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn data-filter-value="first-author">First-author</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn data-filter-value="collaborative">Collaborative</button>
+            </li>
+
+          </ul>
+
+          <div class="filter-select-box">
+
+            <button class="filter-select" data-select>
+
+              <div class="select-value" data-selecct-value>Select category</div>
+
+              <div class="select-icon">
+                <ion-icon name="chevron-down"></ion-icon>
+              </div>
+
+            </button>
+
+            <ul class="select-list">
+
+              <li class="select-item">
+                <button data-select-item data-filter-value="all">all</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item data-filter-value="first-author">first-author</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item data-filter-value="collaborative">collaborative</button>
+              </li>
+
+            </ul>
+
+          </div>
+
+          <ul class="project-list">
+
+            <!-- First Author Papers -->
+            <li class="project-item active" data-filter-item data-category="first-author">
+              <a href="https://ldtho.github.io/MGIoU" target="_blank" class="research-link">
+                <div class="research-card content-card">
+                  <div class="project-img-box media-container">
+                    <div class="loading-overlay">
+                      <div>
+                        <div class="loading-spinner"></div>
+                        <div class="loading-text">Loading...</div>
+                      </div>
+                    </div>
+                    <div class="project-item-icon-box">
+                      <ion-icon name="eye-outline"></ion-icon>
+                    </div>
+                    <img src="./assets/images/mgiou.gif" alt="MGIoU" loading="lazy" class="loading">
+                  </div>
+
+                  <div class="project-content">
+                    <h3 class="h3 project-title">Marginalized Generalized IoU (MGIoU): A Unified Objective Function for Optimizing Any Convex Parametric Shapes</h3>
+                    <p class="project-text">Duy-Tho Le, Trung Pham, Jianfei Cai, Hamid Rezatofighi</p>
+                    <p class="project-text"><em>AAAI Conference on Artificial Intelligence <strong style="color:red;">(Oral presentation)</strong></em>, 2026</p>
+                    <a href="https://ldtho.github.io/MGIoU/" target="_blank" class="project-link" aria-label="Project Page"><ion-icon name="globe-outline"></ion-icon></a>
+                    <a href="https://github.com/ldtho/MGIoU" target="_blank" class="project-link" aria-label="GitHub"><ion-icon name="logo-github"></ion-icon></a>
+                    <a href="https://arxiv.org/abs/2504.16443" target="_blank" class="project-link" aria-label="arXiv"><ion-icon name="newspaper-outline"></ion-icon></a>
+                  </div>
+                </div>
+              </a>
+            </li>
+
+            <li class="project-item active" data-filter-item data-category="first-author">
+              <a href="https://ldtho.github.io/DifFUSER" target="_blank" class="research-link">
+                <div class="research-card content-card">
+                  <div class="project-img-box media-container">
+                    <div class="loading-overlay">
+                      <div>
+                        <div class="loading-spinner"></div>
+                        <div class="loading-text">Loading...</div>
+                      </div>
+                    </div>
+                    <div class="project-item-icon-box">
+                      <ion-icon name="eye-outline"></ion-icon>
+                    </div>
+                    <img src="./assets/images/diffuser.gif" alt="DifFUSER" loading="lazy" class="loading">
+                  </div>
+
+                  <div class="project-content">
+                    <h3 class="h3 project-title">DifFUSER: Diffusion Model for Robust Multi-Sensor Fusion in 3D Object Detection and BEV Segmentation</h3>
+                    <p class="project-text">Duy-Tho Le, Hengcan Shi, Jianfei Cai, Hamid Rezatofighi</p>
+                    <p class="project-text"><em>European Conference on Computer Vision (ECCV), 2024</em></p>
+                    <a href="https://ldtho.github.io/DifFUSER/" target="_blank" class="project-link" aria-label="Project Page"><ion-icon name="globe-outline"></ion-icon></a>
+                    <a href="https://github.com/ldtho/DifFUSER" target="_blank" class="project-link" aria-label="GitHub"><ion-icon name="logo-github"></ion-icon></a>
+                    <a href="https://arxiv.org/abs/2404.04629" target="_blank" class="project-link" aria-label="arXiv"><ion-icon name="newspaper-outline"></ion-icon></a>
+                  </div>
+                </div>
+              </a>
+            </li>
+
+            <li class="project-item active" data-filter-item data-category="first-author">
+              <a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Le_JRDB-PanoTrack_An_Open-world_Panoptic_Segmentation_and_Tracking_Robotic_Dataset_in_CVPR_2024_paper.pdf" target="_blank" class="research-link">
+                <div class="research-card content-card">
+                  <div class="project-img-box media-container">
+                    <div class="loading-overlay">
+                      <div>
+                        <div class="loading-spinner"></div>
+                        <div class="loading-text">Loading...</div>
+                      </div>
+                    </div>
+                    <div class="project-item-icon-box">
+                      <ion-icon name="eye-outline"></ion-icon>
+                    </div>
+                    <img src="./assets/images/panotrack.gif" alt="JRDB-PanoTrack" loading="lazy" class="loading">
+                  </div>
+
+                  <div class="project-content">
+                    <h3 class="h3 project-title">JRDB-PanoTrack: An Open-world Panoptic Segmentation and Tracking Robotic Dataset in Crowded Human Environments</h3>
+                    <p class="project-text">Duy-Tho Le, Chenhui Gou, Stavya Datta, Hengcan Shi, Ian Reid, Jianfei Cai, Hamid Rezatofighi</p>
+                    <p class="project-text"><em>IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2024</em></p>
+                    <a href="https://jrdb.erc.monash.edu/dataset/panotrack" target="_blank" class="project-link" aria-label="Project Page"><ion-icon name="globe-outline"></ion-icon></a>
+                    <a href="https://github.com/JRDB-dataset/jrdb_toolkit/tree/main/panoptic_eval" target="_blank" class="project-link" aria-label="GitHub"><ion-icon name="logo-github"></ion-icon></a>
+                    <a href="https://arxiv.org/abs/2404.01686" target="_blank" class="project-link" aria-label="arXiv"><ion-icon name="newspaper-outline"></ion-icon></a>
+                  </div>
+                </div>
+              </a>
+            </li>
+
+            <li class="project-item active" data-filter-item data-category="first-author">
+              <a href="https://openaccess.thecvf.com/content/CVPR2023/papers/Vendrow_JRDB-Pose_A_Large-Scale_Dataset_for_Multi-Person_Pose_Estimation_and_Tracking_CVPR_2023_paper.pdf" target="_blank" class="research-link">
+                <div class="research-card content-card">
+                  <div class="project-img-box media-container">
+                    <div class="loading-overlay">
+                      <div>
+                        <div class="loading-spinner"></div>
+                        <div class="loading-text">Loading...</div>
+                      </div>
+                    </div>
+                    <div class="project-item-icon-box">
+                      <ion-icon name="eye-outline"></ion-icon>
+                    </div>
+                    <img src="./assets/images/pose.gif" alt="JRDB-Pose" loading="lazy" class="loading">
+                  </div>
+
+                  <div class="project-content">
+                    <h3 class="h3 project-title">JRDB-Pose: A Large-scale Dataset for Multi-Person Pose Estimation and Tracking</h3>
+                    <p class="project-text">Edward Vendrow*, Duy-Tho Le*, Jianfei Cai, Hamid Rezatofighi</p>
+                    <p class="project-text"><em>IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2023</em></p>
+                    <p class="project-text"><small>* Co-first authors</small></p>
+                    <a href="https://jrdb.erc.monash.edu/dataset/pose" target="_blank" class="project-link" aria-label="Project Page"><ion-icon name="globe-outline"></ion-icon></a>
+                    <a href="https://github.com/JRDB-dataset/jrdb_toolkit/" target="_blank" class="project-link" aria-label="GitHub"><ion-icon name="logo-github"></ion-icon></a>
+                    <a href="https://arxiv.org/abs/2210.11940" target="_blank" class="project-link" aria-label="arXiv"><ion-icon name="newspaper-outline"></ion-icon></a>
+                  </div>
+                </div>
+              </a>
+            </li>
+
+            <li class="project-item active" data-filter-item data-category="first-author">
+              <a href="https://ieeexplore.ieee.org/abstract/document/10003992" target="_blank" class="research-link">
+                <div class="research-card content-card">
+                  <div class="project-img-box media-container">
+                    <div class="loading-overlay">
+                      <div>
+                        <div class="loading-spinner"></div>
+                        <div class="loading-text">Loading...</div>
+                      </div>
+                    </div>
+                    <div class="project-item-icon-box">
+                      <ion-icon name="eye-outline"></ion-icon>
+                    </div>
+                    <img src="./assets/images/pifenet.png" alt="Pedestrian Detection" loading="lazy" class="loading">
+                  </div>
+
+                  <div class="project-content">
+                    <h3 class="h3 project-title">Accurate and Real-time 3D Pedestrian Detection Using an Efficient Attentive Pillar Network</h3>
+                    <p class="project-text">Duy-Tho Le, Hengcan Shi, Hamid Rezatofighi, Jianfei Cai</p>
+                    <p class="project-text"><em>IEEE Robotics and Automation Letters (RA-L), 2023</em></p>
+                    <a href="https://github.com/ldtho/PiFeNet" target="_blank" class="project-link" aria-label="GitHub"><ion-icon name="logo-github"></ion-icon></a>
+                    <a href="https://arxiv.org/abs/2112.15458" target="_blank" class="project-link" aria-label="arXiv"><ion-icon name="newspaper-outline"></ion-icon></a>
+                  </div>
+                </div>
+              </a>
+            </li>
+
+
+            <!-- Collaborative Papers -->
+
+            <li class="project-item active" data-filter-item data-category="collaborative">
+              <a href="https://dl.acm.org/doi/pdf/10.1145/3610978.3640648" target="_blank" class="research-link">
+                <div class="research-card content-card">
+                  <div class="project-img-box media-container">
+                    <div class="loading-overlay">
+                      <div>
+                        <div class="loading-spinner"></div>
+                        <div class="loading-text">Loading...</div>
+                      </div>
+                    </div>
+                    <div class="project-item-icon-box">
+                      <ion-icon name="eye-outline"></ion-icon>
+                    </div>
+                    <img src="./assets/images/pepper.png" alt="Visual Perception" loading="lazy" class="loading">
+                  </div>
+
+                  <div class="project-content">
+                    <h3 class="h3 project-title">Improving Visual Perception of a Social Robot for Controlled and In-the-wild Human-robot Interaction</h3>
+                    <p class="project-text">Wangjie Zhong, Leimin Tian, Duy-Tho Le, Hamid Rezatofighi</p>
+                    <p class="project-text"><em>ACM/IEEE International Conference on Human-Robot Interaction (HRI), 2024</em></p>
+                    <a href="https://arxiv.org/abs/2403.01766" target="_blank" class="project-link" aria-label="arXiv"><ion-icon name="newspaper-outline"></ion-icon></a>
+                  </div>
+                </div>
+              </a>
+            </li>
+
+            <li class="project-item active" data-filter-item data-category="collaborative">
+              <a href="https://arxiv.org/abs/2311.02736" target="_blank" class="research-link">
+                <div class="research-card content-card">
+                  <div class="project-img-box media-container">
+                    <div class="loading-overlay">
+                      <div>
+                        <div class="loading-spinner"></div>
+                        <div class="loading-text">Loading...</div>
+                      </div>
+                    </div>
+                    <div class="project-item-icon-box">
+                      <ion-icon name="eye-outline"></ion-icon>
+                    </div>
+                    <img src="./assets/images/traj.gif" alt="JRDB-Traj" loading="lazy" class="loading">
+                  </div>
+
+                  <div class="project-content">
+                    <h3 class="h3 project-title">JRDB-Traj: A Dataset and Benchmark for Trajectory Forecasting in Crowds</h3>
+                    <p class="project-text">Saeed Saadatnejad, Yang Gao, Hamid Rezatofighi, Alexandre Alahi</p>
+                    <p class="project-text"><em>arXiv preprint, 2023</em></p>
+                    <a href="https://jrdb.erc.monash.edu/workshops/iccv2023" target="_blank" class="project-link" aria-label="Project Page"><ion-icon name="globe-outline"></ion-icon></a>
+                    <a href="https://github.com/vita-epfl/JRDB-Traj" target="_blank" class="project-link" aria-label="GitHub"><ion-icon name="logo-github"></ion-icon></a>
+                    <a href="https://arxiv.org/abs/2311.02736" target="_blank" class="project-link" aria-label="arXiv"><ion-icon name="newspaper-outline"></ion-icon></a>
+                  </div>
+                </div>
+              </a>
+            </li>
+
+            <li class="project-item active" data-filter-item data-category="collaborative">
+              <a href="https://www.sciencedirect.com/science/article/pii/S8756328224002047" target="_blank" class="research-link">
+                <div class="research-card content-card">
+                  <div class="project-img-box media-container">
+                    <div class="loading-overlay">
+                      <div>
+                        <div class="loading-spinner"></div>
+                        <div class="loading-text">Loading...</div>
+                      </div>
+                    </div>
+                    <div class="project-item-icon-box">
+                      <ion-icon name="eye-outline"></ion-icon>
+                    </div>
+                    <img src="./assets/images/aff.png" alt="AFFnet" loading="lazy" class="loading">
+                  </div>
+
+                  <div class="project-content">
+                    <h3 class="h3 project-title">AFFnet-a deep convolutional neural network for the detection of atypical femur fractures from anteriorposterior radiographs</h3>
+                    <p class="project-text">Hanh H Nguyen, Duy Tho Le, Cat Shore-Lorenti, Colin Chen, Jorg Schilcher, Anders Eklund, Roger Zebaze, Frances Milat, Shoshana Sztal-Mazer, Christian M Girgis, Roderick Clifton-Bligh, Jianfei Cai, Peter R Ebeling</p>
+                    <p class="project-text"><em>Bone, Volume 187, Pages 117215, 2024</em></p>
+                    <a href="https://www.sciencedirect.com/science/article/pii/S8756328224002047" target="_blank" class="project-link" aria-label="ScienceDirect"><ion-icon name="newspaper-outline"></ion-icon></a>
+                  </div>
+                </div>
+              </a>
+            </li>
+
+
+        </section>
+
+      </article>
+
+
+
+
+
+      <!--
+        - #PROJECTS
+      -->
+
+      <article class="projects-section" data-page="projects">
+
+        <header>
+          <h2 class="h2 article-title">Side Projects</h2>
+        </header>
+
+        <section class="project-showcase">
+
+          <div class="project-item content-card">
+            <div class="project-img-box media-container">
+              <div class="loading-overlay">
+                <div>
+                  <div class="loading-spinner"></div>
+                  <div class="loading-text">Loading video...</div>
+                </div>
+              </div>
+              <video autoplay muted loop class="loading">
+                <source src="./assets/images/pepper.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <button class="fullscreen-btn" onclick="openFullscreen(this.previousElementSibling)" aria-label="View Fullscreen">
+                <ion-icon name="expand-outline"></ion-icon>
+              </button>
+            </div>
+
+            <div class="project-content">
+              <h3 class="h3 project-title">Humanoid Robot "Pepper" - Social Interaction System</h3>
+              <p class="project-text">
+                Supervised undergraduate IT students to develop Pepper's capabilities for seeing, talking, and interacting with people. 
+                Implemented computer vision algorithms for face detection and recognition, natural language processing for conversations, 
+                and gesture recognition to enable meaningful human-robot interactions in social environments.
+              </p>
+            </div>
+          </div>
+
+          <div class="project-item content-card">
+            <div class="project-img-box media-container">
+              <div class="loading-overlay">
+                <div>
+                  <div class="loading-spinner"></div>
+                  <div class="loading-text">Loading video...</div>
+                </div>
+              </div>
+              <video autoplay muted loop class="loading">
+                <source src="./assets/images/mms.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <button class="fullscreen-btn" onclick="openFullscreen(this.previousElementSibling)" aria-label="View Fullscreen">
+                <ion-icon name="expand-outline"></ion-icon>
+              </button>
+            </div>
+
+            <div class="project-content">
+              <h3 class="h3 project-title">Self-Racing Formula 1 Car - Monash Motorsport</h3>
+              <p class="project-text">
+                Developed LiDAR-based object detection and 3D racing map generation for autonomous Formula 1 racing. 
+                Implemented real-time perception algorithms that enable the car to navigate racing circuits autonomously, 
+                detecting track boundaries, obstacles, and optimal racing lines for competitive autonomous racing.
+              </p>
+            </div>
+          </div>
+
+          <div class="project-item content-card">
+            <div class="project-img-box media-container">
+              <div class="loading-overlay">
+                <div>
+                  <div class="loading-spinner"></div>
+                  <div class="loading-text">Loading video...</div>
+                </div>
+              </div>
+              <video autoplay muted loop class="loading">
+                <source src="./assets/images/neuweb.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <button class="fullscreen-btn" onclick="openFullscreen(this.previousElementSibling)" aria-label="View Fullscreen">
+                <ion-icon name="expand-outline"></ion-icon>
+              </button>
+            </div>
+
+            <div class="project-content">
+              <h3 class="h3 project-title">Smart Camera Surveillance System</h3>
+              <p class="project-text">
+                End-to-end development of an intelligent surveillance system from concept to product. Features include 
+                car accident detection, parking management, threat detection, and fire detection using advanced computer vision 
+                and deep learning algorithms. Deployed in real-world environments for enhanced security and safety monitoring.
+              </p>
+            </div>
+          </div>
+
+        </section>
+
+      </article>
+
+    </div>
+
+  </main>
+
+
+
+
+
+
+  <!--
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+
+  <!--
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
