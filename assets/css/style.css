@@ -1679,7 +1679,7 @@ textarea.form-input::-webkit-resizer { display: none; }
   }
 
   .main-content {
-    min-width: 75%;
+    min-width: 73.5%;
     width: 75%;
     margin: 0;
   }
@@ -1693,11 +1693,12 @@ textarea.form-input::-webkit-resizer { display: none; }
   .sidebar {
     position: sticky;
     top: 60px;
-    max-height: max-content;
-    height: 100%;
+    max-height: calc(100vh - 120px);
+    height: auto;
     margin-bottom: 0;
     padding-top: 60px;
     z-index: 1;
+    width: 400px;
   }
 
   .sidebar-info { flex-direction: column; }
